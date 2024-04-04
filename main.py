@@ -1,25 +1,40 @@
-# Створіть клас температурного датчика, де обмежується
-# температура в межах прийнятних для датчика значень, за
-# допомогою property().
+# Завдання для функторів. Створіть клас TextModifier,
+# який може здійснювати різні операції над текстом:
+# • Операція перетворення тексту у верхній регістр.
+# • Операція перетворення тексту у нижній регістр.
+# • Операція видалення пробілів у тексті.
+# • Операція шифрування тексту за допомогою зсуву
+# вліво на задану кількість символів
 
-class Temperature:
-    def __init__(self, temperature=0):
-        self._temperature = temperature
+class TextModifier:
+    def __init__(self, text):
+        self.text = text
 
-    @property
-    def temperature(self):
-        return self._temperature
+    def __call__(self, operation):
+        if operation == "upper":
+            return self.text.upper()
+        elif operation == "lower":
+            return self.text.lower()
+        elif operation == "remove_spaces":
+            return self.text.replace(" ", "")
 
-    def current_temperature(self):
-        if 50 > self._temperature > -50:
-            print(f"Current temperature is: {self._temperature}")
-        elif self._temperature > 50:
-            print(f"Temperature '{self._temperature}' is to high.")
-        elif self._temperature < -50:
-            print(f"Temperature '{self._temperature}' is to low.")
 
-temperature = Temperature(23)
-temperature.current_temperature()
+text = "Hello, World!"
+modifier = TextModifier(text)
+
+result = modifier("upper")
+print(result)
+
+
+result = modifier("lower")
+print(result)
+
+
+result = modifier("remove_spaces")
+print(result)
+
+
+
 
 
 
